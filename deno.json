@@ -1,0 +1,27 @@
+{
+	"compilerOptions": {
+		"allowJs": true,
+		"lib": ["deno.window"],
+		"strict": true
+	},
+	"lint": {
+		"rules": {
+			"tags": ["recommended"],
+			"include": ["ban-untagged-todo"],
+			"exclude": ["no-unused-vars"]
+		}
+	},
+	"tasks": {
+		"weekly": "deno run --allow-read=. --allow-write=. scheduler.ts",
+		"test": "deno test --allow-read --allow-write"
+	},
+	"fmt": {
+		"options": {
+			"useTabs": true,
+			"lineWidth": 80,
+			"indentWidth": 4,
+			"singleQuote": true,
+			"proseWrap": "preserve"
+		}
+	}
+}
