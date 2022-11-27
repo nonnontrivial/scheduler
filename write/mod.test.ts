@@ -16,7 +16,7 @@ Deno.test('relevant subdirectory and file exist', async () => {
 	assert(isFile);
 });
 
-Deno.test('modifies contents of already existing file if not markdown', async () => {
+Deno.test('overwrites existing file', async () => {
 	const preexisting = '!';
 	const setup = async (): Promise<[string, string]> => {
 		const td = await Deno.makeTempDir();
@@ -27,7 +27,7 @@ Deno.test('modifies contents of already existing file if not markdown', async ()
 	};
 	const [td, subdir] = await setup();
 	const { size } = await writeUpcomingSchedule(td);
-	assert(size ?? 0 > 0);
+	assert((size ?? 0) > 0);
 	const filepath = await getFilePath(subdir);
 	const decoder = new TextDecoder('utf-8');
 	const filecontents = decoder.decode(await Deno.readFile(filepath));
