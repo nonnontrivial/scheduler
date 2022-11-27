@@ -1,1 +1,1 @@
-export const workingDirectoryFlag = 'workingDirectory' as const;
+export const workingDirectoryFlag = "workingDirectory" as const;

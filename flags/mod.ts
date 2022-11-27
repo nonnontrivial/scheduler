@@ -1,5 +1,5 @@
-import { Args, parse } from 'https://deno.land/std@0.165.0/flags/mod.ts';
-import { workingDirectoryFlag } from '../const.ts';
+import { Args, parse } from "https://deno.land/std@0.165.0/flags/mod.ts";
+import { workingDirectoryFlag } from "../const.ts";
 
 type Flags = typeof workingDirectoryFlag;
 
@@ -10,24 +10,24 @@ type Flags = typeof workingDirectoryFlag;
  * @returns true/false of existence of each flag
  */
 const getFlagsExist = (
-	opts: Args,
-	flags: Flags[],
+  opts: Args,
+  flags: Flags[],
 ): boolean[] => flags?.map((f) => f in opts);
 
 interface FlagResult {
-	isValid: boolean;
-	invalidMessage?: string;
+  isValid: boolean;
+  invalidMessage?: string;
 }
 export const getFlags = (): FlagResult & { [F in Flags]: string } => {
-	const opts = parse(Deno.args);
-	const [workingDirectoryFlagIsPresent] = getFlagsExist(opts, [
-		workingDirectoryFlag,
-	]);
-	return {
-		isValid: workingDirectoryFlagIsPresent,
-		invalidMessage: !workingDirectoryFlagIsPresent
-			? `missing --${workingDirectoryFlag}`
-			: undefined,
-		[workingDirectoryFlag]: String(opts[workingDirectoryFlag]),
-	};
+  const opts = parse(Deno.args);
+  const [workingDirectoryFlagIsPresent] = getFlagsExist(opts, [
+    workingDirectoryFlag,
+  ]);
+  return {
+    isValid: workingDirectoryFlagIsPresent,
+    invalidMessage: !workingDirectoryFlagIsPresent
+      ? `missing --${workingDirectoryFlag}`
+      : undefined,
+    [workingDirectoryFlag]: String(opts[workingDirectoryFlag]),
+  };
 };
